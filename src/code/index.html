@@ -1,27 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../assets/fonts/vazir-font.css">
     <title>Document</title>
 </head>
 
 <body>
-    <div class="container mt-3">
+    <div class="container mt-3 shadow rounded p-3">
         <div class="row">
             <div class="col">
-                <button class="btn btn-primary" onclick="addNewField()">Add new field</button>
+                <button class="btn btn-primary" onclick="addNewField()"> فیلد جدید<i class="bi bi-plus-circle"></i></button>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col">
+                <h4>فرم بی عنوان</h4>
+                <input type="text" placeholder="فرم را توصیف کنید" class="form-control">
             </div>
         </div>
     </div>
-    <div class="container mt-3" id="formArea">
+    <div class="container mt-3 pb-3 shadow rounded" style="display: none;" id="formArea">
         <div class="row">
         </div>
     </div>
     <div class="container mt-3" style="display: none;" id="submitButton">
-        <button class="btn btn-success">Submit</button>
+        <button class="btn btn-success">ثبت <i class="bi bi-check-circle"> </i></i></button>
     </div>
 
     <script src="../assets/js/index.js"></script>
