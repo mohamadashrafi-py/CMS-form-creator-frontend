@@ -4,45 +4,422 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/css/style-rtl.css">
     <link rel="stylesheet" href="../assets/icons/bootstrap-icons.css">
     <link rel="stylesheet" href="../assets/fonts/vazir-font.css">
-    <title>Document</title>
+    <title>سازنده فرم پیشرفته</title>
+    <style>
+        :root {
+            --primary-color: #673ab7;
+            --secondary-color: #f5f5f5;
+            --accent-color: #7c4dff;
+        }
+
+        body {
+            background-color: #fafafa;
+        }
+
+        .form-header {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .form-preview {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .draggable-card {
+            cursor: move;
+            transition: all 0.2s;
+        }
+
+        .draggable-card.dragging {
+            opacity: 0.8;
+            border: 2px dashed var(--accent-color);
+            background-color: rgba(124, 77, 255, 0.05);
+        }
+
+        .form-card {
+            border-left: 6px solid var(--primary-color);
+            border-radius: 8px;
+        }
+
+        .form-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .field-actions {
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .form-card:hover .field-actions {
+            opacity: 1;
+        }
+
+        .required-star {
+            color: #d32f2f;
+            margin-right: 4px;
+        }
+
+        .theme-selector {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .theme-selector.selected {
+            border-color: #333;
+        }
+
+        .section-divider {
+            border-top: 2px dashed #ccc;
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .section-divider-text {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 0 15px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        #fieldSettings {
+            transition: all 0.3s ease;
+        }
+
+        .settings-input {
+            border: 1px solid #ddd !important;
+            background-color: #fff !important;
+        }
+
+        .settings-input:focus {
+            border-color: var(--primary-color) !important;
+            box-shadow: 0 0 0 0.25rem rgba(103, 58, 183, 0.25) !important;
+        }
+
+        .conditional-field {
+            background-color: rgba(124, 77, 255, 0.05);
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .form-card {
+            border-left: 6px solid var(--primary-color);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .form-card.selected {
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+
+        .field-actions {
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .form-card:hover .field-actions {
+            opacity: 1;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container mt-3 shadow rounded p-3">
+    <div class="container-fluid py-3">
         <div class="row">
-            <div class="col">
-                <button class="btn btn-primary" onclick="addNewField()"> فیلد جدید<i class="bi bi-plus-circle"></i></button>
+            <div class="col-lg-2 d-none d-lg-block bg-light py-3 border-end">
+                <div class="sticky-top pt-3">
+                    <h5 class="mb-4">عناصر فرم</h5>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-primary text-start" onclick="addNewField('text')">
+                            <i class="bi bi-text-paragraph me-2"></i> متن کوتاه
+                        </button>
+                        <button class="btn btn-outline-primary text-start" onclick="addNewField('textarea')">
+                            <i class="bi bi-textarea-t me-2"></i> متن بلند
+                        </button>
+                        <button class="btn btn-outline-primary text-start" onclick="addNewField('select')">
+                            <i class="bi bi-menu-button me-2"></i> انتخاب از لیست
+                        </button>
+                        <button class="btn btn-outline-primary text-start" onclick="addNewField('radio')">
+                            <i class="bi bi-ui-radios me-2"></i> چند گزینه‌ای
+                        </button>
+                        <button class="btn btn-outline-primary text-start" onclick="addNewField('checkbox')">
+                            <i class="bi bi-check2-square me-2"></i> چک باکس
+                        </button>
+                        <button class="btn btn-outline-primary text-start" onclick="addNewField('file')">
+                            <i class="bi bi-upload me-2"></i> آپلود فایل
+                        </button>
+                        <button class="btn btn-outline-primary text-start" onclick="addNewField('date')">
+                            <i class="bi bi-calendar me-2"></i> تاریخ
+                        </button>
+                        <button class="btn btn-outline-primary text-start" onclick="addNewField('time')">
+                            <i class="bi bi-clock me-2"></i> زمان
+                        </button>
+                        <button class="btn btn-outline-primary text-start" onclick="addNewField('scale')">
+                            <i class="bi bi-list-stars me-2"></i> مقیاس
+                        </button>
+                        <button class="btn btn-outline-primary text-start" onclick="addNewSection()">
+                            <i class="bi bi-layers me-2"></i> بخش جدید
+                        </button>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <h5 class="mb-3">تنظیمات فرم</h5>
+                    <div class="mb-3">
+                        <label class="form-label">رنگ تم</label>
+                        <div class="d-flex gap-2">
+                            <div class="theme-selector selected" style="background-color: #673ab7;"
+                                onclick="changeTheme('#673ab7')"></div>
+                            <div class="theme-selector" style="background-color: #3f51b5;"
+                                onclick="changeTheme('#3f51b5')"></div>
+                            <div class="theme-selector" style="background-color: #009688;"
+                                onclick="changeTheme('#009688')"></div>
+                            <div class="theme-selector" style="background-color: #ff5722;"
+                                onclick="changeTheme('#ff5722')"></div>
+                            <div class="theme-selector" style="background-color: #607d8b;"
+                                onclick="changeTheme('#607d8b')"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" id="collectEmails">
+                        <label class="form-check-label" for="collectEmails">جمع‌آوری ایمیل‌ها</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" id="limitResponses">
+                        <label class="form-check-label" for="limitResponses">محدودیت پاسخ</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" id="showProgress">
+                        <label class="form-check-label" for="showProgress">نمایش پیشرفت</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8 py-3">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="mb-0">سازنده فرم</h3>
+                    <div>
+                        <button class="btn btn-outline-secondary me-2" onclick="clearForm()">
+                            <i class="bi bi-trash me-1"></i> پاک کردن
+                        </button>
+                        <button class="btn btn-primary me-2" onclick="showExportModal()">
+                            <i class="bi bi-save me-1"></i> ذخیره
+                        </button>
+                        <button class="btn btn-success" id="previewBtn" onclick="togglePreview()">
+                            <i class="bi bi-eye me-1"></i> پیش نمایش
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <input type="text" class="form-control form-control-lg border-0 shadow-none" id="formTitle"
+                                placeholder="عنوان فرم" style="font-size: 1.75rem;">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control border-0 shadow-none" id="formDescription" rows="2"
+                                placeholder="توضیحات فرم"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="formArea">
+                    <p class="text-muted text-center py-5" id="emptyMessage">
+                        <i class="bi bi-plus-circle display-6 d-block mb-3"></i>
+                        برای شروع، فیلدی به فرم اضافه کنید
+                    </p>
+                </div>
+
+                <div class="mt-4 text-center" id="actionButtons" style="display: none;">
+                    <button class="btn btn-success btn-lg" onclick="publishForm()">
+                        <i class="bi bi-send me-2"></i> انتشار فرم
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-lg-2 d-none d-lg-block bg-light py-3 border-start">
+                <div class="sticky-top pt-3">
+                    <h5 class="mb-3">پیش نمایش زنده</h5>
+                    <div class="card mb-3">
+                        <div class="card-body p-2">
+                            <div id="livePreview" class="p-2">
+                                <p class="text-muted small text-center">پیش نمایش اینجا نمایش داده می‌شود</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 class="mb-3 mt-4">تنظیمات فیلد</h5>
+                    <div id="fieldSettings" class="card">
+                        <div class="card-body">
+                            <p class="text-muted small text-center">فیلدی را انتخاب کنید</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row mt-5">
-            <div class="col">
-                <h4>فرم بی عنوان</h4>
-                <input type="text" placeholder="فرم را توصیف کنید" class="form-control">
-            </div>
-        </div>
-    </div>
-    <div class="container mt-3 pb-3 shadow rounded" style="display: none;" id="formArea">
-        <div class="row">
-        </div>
-    </div>
-    <div class="container mt-3" style="display: none;" id="submitButton">
-        <button class="btn btn-success">ثبت <i class="bi bi-check-circle"> </i></i></button>
     </div>
 
+    <!-- Preview Modal -->
+    <div class="modal fade" id="previewModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">پیش نمایش فرم</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="previewContent">
+                    <!-- Preview content will be inserted here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Field Settings Modal -->
+    <div class="modal fade" id="fieldSettingsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">تنظیمات پیشرفته فیلد</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="advancedFieldSettings">
+                    <!-- Advanced settings will be inserted here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
+                    <button type="button" class="btn btn-primary">ذخیره تغییرات</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conditional Logic Modal -->
+    <div class="modal fade" id="conditionalLogicModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">منطق شرطی</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">اگر پاسخ به این سوال:</label>
+                        <select class="form-select" id="conditionalFieldSelect">
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">شرط:</label>
+                        <select class="form-select" id="conditionalOperator">
+                            <option value="equals">برابر باشد با</option>
+                            <option value="not_equals">برابر نباشد با</option>
+                            <option value="contains">شامل باشد</option>
+                            <option value="not_contains">شامل نباشد</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">مقدار:</label>
+                        <input type="text" class="form-control" id="conditionalValue">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">پس:</label>
+                        <select class="form-select" id="conditionalAction">
+                            <option value="show">این فیلد را نمایش بده</option>
+                            <option value="hide">این فیلد را مخفی کن</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لغو</button>
+                    <button type="button" class="btn btn-primary" onclick="saveConditionalLogic()">ذخیره منطق
+                        شرطی</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div class="modal fade" id="exportModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">ذخیره فرم</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">نام فرم</label>
+                        <input type="text" class="form-control" id="exportFormName" placeholder="نام فرم">
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="includeBootstrap">
+                        <label class="form-check-label" for="includeBootstrap">شامل Bootstrap باشد</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">انصراف</button>
+                    <button type="button" class="btn btn-primary" onclick="exportForm()">ذخیره فرم</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Publish Modal -->
+    <div class="modal fade" id="publishModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">فرم شما منتشر شد!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>لینک فرم شما آماده است. این لینک را می‌توانید با دیگران به اشتراک بگذارید:</p>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="formLink" readonly>
+                        <button class="btn btn-outline-secondary" type="button" onclick="copyFormLink()">
+                            <i class="bi bi-clipboard"></i> کپی
+                        </button>
+                    </div>
+                    <div class="share-buttons mt-4">
+                        <p class="mb-2">اشتراک گذاری در:</p>
+                        <button class="btn btn-outline-primary btn-sm me-2" onclick="shareOnTelegram()">
+                            <i class="bi bi-telegram"></i> تلگرام
+                        </button>
+                        <button class="btn btn-outline-info btn-sm me-2" onclick="shareOnWhatsApp()">
+                            <i class="bi bi-whatsapp"></i> واتس‌اپ
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="shareOnTwitter()">
+                            <i class="bi bi-twitter"></i> توییتر
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">تایید</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/index.js"></script>
-    <script>
-        document.getElementById("formArea").addEventListener("click", function (event) {
-            if (event.target.classList.contains("delete-btn")) {
-                const cardToRemove = event.target.closest('.card');
-                if (cardToRemove) {
-                    cardToRemove.remove();
-                }
-            }
-        });
-    </script>
 </body>
 
 </html>
