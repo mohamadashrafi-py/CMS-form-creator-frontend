@@ -316,7 +316,47 @@
             --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             --border-radius: 8px;
             --field-spacing: 1rem;
-        }
+        }.attachment-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    border: 1px dashed #ddd;
+    border-radius: 8px;
+    min-height: 60px;
+}
+
+.attachment-thumbnail {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+}
+
+.attachment-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.attachment-thumbnail .remove-attachment {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 12px;
+}
     </style>
 </head>
 
