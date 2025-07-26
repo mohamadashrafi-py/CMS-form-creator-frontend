@@ -131,148 +131,663 @@
         .form-card:hover .field-actions {
             opacity: 1;
         }
+
+        .theme-option {
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .theme-option:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-option.active {
+            border-color: #333;
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+
+        #designPreview {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            min-height: 300px;
+        }
+
+        .centered-form {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Custom Tab Styles */
+        .nav-pill-soft .nav-link {
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            margin: 0 0.25rem;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-pill-soft .nav-link.active {
+            background-color: rgba(var(--primary-color-rgb), 0.1);
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .nav-pill-soft .nav-link:not(.active):hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .color-picker-wrapper {
+            background: white;
+            border-radius: 8px;
+            padding: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .color-picker-wrapper:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-control-color {
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 2px;
+        }
+
+        .form-range::-webkit-slider-thumb {
+            background: var(--primary-color);
+        }
+
+        .form-range::-moz-range-thumb {
+            background: var(--primary-color);
+        }
+
+        .form-range::-ms-thumb {
+            background: var(--primary-color);
+        }
+
+        /* Add to your root variables */
+        :root {
+            --primary-color-rgb: 103, 58, 183;
+        }
+
+        /* Design Tab Styles */
+        .theme-option {
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .theme-option:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-option.active {
+            border-color: #333;
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+
+        #designPreview {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            min-height: 300px;
+        }
+
+        .centered-form {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Tab Styles */
+        .nav-pill-soft .nav-link {
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            margin: 0 0.25rem;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-pill-soft .nav-link.active {
+            background-color: rgba(var(--primary-color-rgb), 0.1);
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .nav-pill-soft .nav-link:not(.active):hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .color-picker-wrapper {
+            background: white;
+            border-radius: 8px;
+            padding: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .color-picker-wrapper:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-control-color {
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 2px;
+        }
+
+        .form-range::-webkit-slider-thumb {
+            background: var(--primary-color);
+        }
+
+        .form-range::-moz-range-thumb {
+            background: var(--primary-color);
+        }
+
+        .form-range::-ms-thumb {
+            background: var(--primary-color);
+        }
+
+        /* Add to your root variables */
+        :root {
+            --primary-color-rgb: 103, 58, 183;
+            --button-text-color: #ffffff;
+            --button-hover-color: #5e35b1;
+            --title-font-size: 1.5rem;
+            --font-weight: 400;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+            --field-spacing: 1rem;
+        }
     </style>
 </head>
 
 <body>
-    <div class="container-fluid py-3">
-        <div class="row">
-            <div class="col-lg-2 d-none d-lg-block bg-light py-3 border-end">
-                <div class="sticky-top pt-3">
-                    <h5 class="mb-4">عناصر فرم</h5>
-                    <div class="d-grid gap-2">
-                        <button class="btn btn-outline-primary text-start" onclick="addNewField('text')">
-                            <i class="bi bi-text-paragraph me-2"></i> متن کوتاه
-                        </button>
-                        <button class="btn btn-outline-primary text-start" onclick="addNewField('textarea')">
-                            <i class="bi bi-textarea-t me-2"></i> متن بلند
-                        </button>
-                        <button class="btn btn-outline-primary text-start" onclick="addNewField('select')">
-                            <i class="bi bi-menu-button me-2"></i> انتخاب از لیست
-                        </button>
-                        <button class="btn btn-outline-primary text-start" onclick="addNewField('radio')">
-                            <i class="bi bi-ui-radios me-2"></i> چند گزینه‌ای
-                        </button>
-                        <button class="btn btn-outline-primary text-start" onclick="addNewField('checkbox')">
-                            <i class="bi bi-check2-square me-2"></i> چک باکس
-                        </button>
-                        <button class="btn btn-outline-primary text-start" onclick="addNewField('file')">
-                            <i class="bi bi-upload me-2"></i> آپلود فایل
-                        </button>
-                        <button class="btn btn-outline-primary text-start" onclick="addNewField('date')">
-                            <i class="bi bi-calendar me-2"></i> تاریخ
-                        </button>
-                        <button class="btn btn-outline-primary text-start" onclick="addNewField('time')">
-                            <i class="bi bi-clock me-2"></i> زمان
-                        </button>
-                        <button class="btn btn-outline-primary text-start" onclick="addNewField('scale')">
-                            <i class="bi bi-list-stars me-2"></i> مقیاس
-                        </button>
-                        <button class="btn btn-outline-primary text-start" onclick="addNewSection()">
-                            <i class="bi bi-layers me-2"></i> بخش جدید
-                        </button>
-                    </div>
-
-                    <hr class="my-4">
-
-                    <h5 class="mb-3">تنظیمات فرم</h5>
-                    <div class="mb-3">
-                        <label class="form-label">رنگ تم</label>
-                        <div class="d-flex gap-2">
-                            <div class="theme-selector selected" style="background-color: #673ab7;"
-                                onclick="changeTheme('#673ab7')"></div>
-                            <div class="theme-selector" style="background-color: #3f51b5;"
-                                onclick="changeTheme('#3f51b5')"></div>
-                            <div class="theme-selector" style="background-color: #009688;"
-                                onclick="changeTheme('#009688')"></div>
-                            <div class="theme-selector" style="background-color: #ff5722;"
-                                onclick="changeTheme('#ff5722')"></div>
-                            <div class="theme-selector" style="background-color: #607d8b;"
-                                onclick="changeTheme('#607d8b')"></div>
-                        </div>
-                    </div>
-
-                    <div class="form-check form-switch mb-3">
-                        <input class="form-check-input" type="checkbox" id="collectEmails">
-                        <label class="form-check-label" for="collectEmails">جمع‌آوری ایمیل‌ها</label>
-                    </div>
-
-                    <div class="form-check form-switch mb-3">
-                        <input class="form-check-input" type="checkbox" id="limitResponses">
-                        <label class="form-check-label" for="limitResponses">محدودیت پاسخ</label>
-                    </div>
-
-                    <div class="form-check form-switch mb-3">
-                        <input class="form-check-input" type="checkbox" id="showProgress">
-                        <label class="form-check-label" for="showProgress">نمایش پیشرفت</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-8 py-3">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h3 class="mb-0">سازنده فرم</h3>
-                    <div>
-                        <button class="btn btn-outline-secondary me-2" onclick="clearForm()">
-                            <i class="bi bi-trash me-1"></i> پاک کردن
-                        </button>
-                        <button class="btn btn-primary me-2" onclick="showExportModal()">
-                            <i class="bi bi-save me-1"></i> ذخیره
-                        </button>
-                        <button class="btn btn-success" id="previewBtn" onclick="togglePreview()">
-                            <i class="bi bi-eye me-1"></i> پیش نمایش
-                        </button>
-                    </div>
-                </div>
-
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <input type="text" class="form-control form-control-lg border-0 shadow-none" id="formTitle"
-                                placeholder="عنوان فرم" style="font-size: 1.75rem;">
-                        </div>
-                        <div class="mb-3">
-                            <textarea class="form-control border-0 shadow-none" id="formDescription" rows="2"
-                                placeholder="توضیحات فرم"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="formArea">
-                    <p class="text-muted text-center py-5" id="emptyMessage">
-                        <i class="bi bi-plus-circle display-6 d-block mb-3"></i>
-                        برای شروع، فیلدی به فرم اضافه کنید
-                    </p>
-                </div>
-
-                <div class="mt-4 text-center" id="actionButtons" style="display: none;">
-                    <button class="btn btn-success btn-lg" onclick="publishForm()">
-                        <i class="bi bi-send me-2"></i> انتشار فرم
-                    </button>
-                </div>
-            </div>
-
-            <div class="col-lg-2 d-none d-lg-block bg-light py-3 border-start">
-                <div class="sticky-top pt-3">
-                    <h5 class="mb-3">پیش نمایش زنده</h5>
-                    <div class="card mb-3">
-                        <div class="card-body p-2">
-                            <div id="livePreview" class="p-2">
-                                <p class="text-muted small text-center">پیش نمایش اینجا نمایش داده می‌شود</p>
+    <!-- Tabs START -->
+    <ul class="nav nav-pills  nav-pills-bg-soft my-3 mx-3 px-3 nav-justified" id="pills-tab" role="tablist">
+        <li class="nav-item ms-2 ms-sm-5" role="presentation">
+            <button class="nav-link mb-0 active" id="pills-tab-8" data-bs-toggle="pill" data-bs-target="#pills-tab8"
+                type="button" role="tab" aria-controls="pills-tab8" aria-selected="true">فرم</button>
+        </li>
+        <!-- Tab item -->
+        <li class="nav-item ms-2 ms-sm-5" role="presentation">
+            <button class="nav-link mb-0" id="pills-tab-9" data-bs-toggle="pill" data-bs-target="#pills-tab9"
+                type="button" role="tab" aria-controls="pills-tab9" aria-selected="false">طراحی</button>
+        </li>
+        <!-- Tab item -->
+        <li class="nav-item ms-2 ms-sm-5" role="presentation">
+            <button class="nav-link mb-0" id="pills-tab-10" data-bs-toggle="pill" data-bs-target="#pills-tab10"
+                type="button" role="tab" aria-controls="pills-tab10" aria-selected="false">تنظیمات</button>
+        </li>
+        <!-- Tab item -->
+        <li class="nav-item ms-2 ms-sm-5" role="presentation">
+            <button class="nav-link mb-0" id="pills-tab-10" data-bs-toggle="pill" data-bs-target="#pills-tab10"
+                type="button" role="tab" aria-controls="pills-tab10" aria-selected="false">انتشار</button>
+        </li>
+    </ul>
+    <!-- Tabs contents -->
+    <div class="tab-content" id="pills-tabContent">
+        <!-- Content -->
+        <div class="tab-pane fade show active" id="pills-tab8" role="tabpanel" aria-labelledby="pills-tab-8">
+            <div class="container-fluid py-3">
+                <div class="row">
+                    <div class="col-lg-2 d-none d-lg-block bg-light py-3 border-end">
+                        <div class="sticky-top pt-3">
+                            <h5 class="mb-4">عناصر فرم</h5>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-outline-primary text-start" onclick="addNewField('text')">
+                                    <i class="bi bi-text-paragraph me-2"></i> متن کوتاه
+                                </button>
+                                <button class="btn btn-outline-primary text-start" onclick="addNewField('textarea')">
+                                    <i class="bi bi-textarea-t me-2"></i> متن بلند
+                                </button>
+                                <button class="btn btn-outline-primary text-start" onclick="addNewField('select')">
+                                    <i class="bi bi-menu-button me-2"></i> انتخاب از لیست
+                                </button>
+                                <button class="btn btn-outline-primary text-start" onclick="addNewField('radio')">
+                                    <i class="bi bi-ui-radios me-2"></i> چند گزینه‌ای
+                                </button>
+                                <button class="btn btn-outline-primary text-start" onclick="addNewField('checkbox')">
+                                    <i class="bi bi-check2-square me-2"></i> چک باکس
+                                </button>
+                                <button class="btn btn-outline-primary text-start" onclick="addNewField('file')">
+                                    <i class="bi bi-upload me-2"></i> آپلود فایل
+                                </button>
+                                <button class="btn btn-outline-primary text-start" onclick="addNewField('date')">
+                                    <i class="bi bi-calendar me-2"></i> تاریخ
+                                </button>
+                                <button class="btn btn-outline-primary text-start" onclick="addNewField('time')">
+                                    <i class="bi bi-clock me-2"></i> زمان
+                                </button>
+                                <button class="btn btn-outline-primary text-start" onclick="addNewField('scale')">
+                                    <i class="bi bi-list-stars me-2"></i> مقیاس
+                                </button>
+                                <button class="btn btn-outline-primary text-start" onclick="addNewSection()">
+                                    <i class="bi bi-layers me-2"></i> بخش جدید
+                                </button>
                             </div>
                         </div>
                     </div>
 
-                    <h5 class="mb-3 mt-4">تنظیمات فیلد</h5>
-                    <div id="fieldSettings" class="card">
-                        <div class="card-body">
-                            <p class="text-muted small text-center">فیلدی را انتخاب کنید</p>
+                    <div class="col-lg-8 py-3">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h3 class="mb-0">سازنده فرم</h3>
+                            <div>
+                                <button class="btn btn-outline-secondary me-2" onclick="clearForm()">
+                                    <i class="bi bi-trash me-1"></i> پاک کردن
+                                </button>
+                                <button class="btn btn-primary me-2" onclick="showExportModal()">
+                                    <i class="bi bi-save me-1"></i> ذخیره
+                                </button>
+                                <button class="btn btn-success" id="previewBtn" onclick="togglePreview()">
+                                    <i class="bi bi-eye me-1"></i> پیش نمایش
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control form-control-lg border-0 shadow-none"
+                                        id="formTitle" placeholder="عنوان فرم" style="font-size: 1.75rem;">
+                                </div>
+                                <div class="mb-3">
+                                    <textarea class="form-control border-0 shadow-none" id="formDescription" rows="2"
+                                        placeholder="توضیحات فرم"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="formArea">
+                            <p class="text-muted text-center py-5" id="emptyMessage">
+                                <i class="bi bi-plus-circle display-6 d-block mb-3"></i>
+                                برای شروع، فیلدی به فرم اضافه کنید
+                            </p>
+                        </div>
+
+                        <div class="mt-4 text-center" id="actionButtons" style="display: none;">
+                            <button class="btn btn-success btn-lg" onclick="goToSettingsTab()">
+                                <i class="bi bi-arrow-right-circle"></i> مرحله بعدی
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 d-none d-lg-block bg-light py-3 border-start">
+                        <div class="sticky-top pt-3">
+                            <h5 class="mb-3">پیش نمایش زنده</h5>
+                            <div class="card mb-3">
+                                <div class="card-body p-2">
+                                    <div id="livePreview" class="p-2">
+                                        <p class="text-muted small text-center">پیش نمایش اینجا نمایش داده می‌شود</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h5 class="mb-3 mt-4">تنظیمات فیلد</h5>
+                            <div id="fieldSettings" class="card">
+                                <div class="card-body">
+                                    <p class="text-muted small text-center">فیلدی را انتخاب کنید</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Content -->
+        <div class="tab-pane fade" id="pills-tab9" role="tabpanel" aria-labelledby="pills-tab-9">
+            <div class="container-fluid py-3">
+                <div class="row">
+                    <!-- Main Preview Area (now on right side) -->
+                    <div class="col-lg-8 order-lg-2 py-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">پیش نمایش فرم</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="designPreview" class="p-4">
+                                    <!-- The form preview will be rendered here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Design Settings Sidebar (now on left side) -->
+                    <div class="col-lg-4 order-lg-1 py-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <ul class="nav nav-pills nav-pill-soft" id="designTabs" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="theme-tab" data-bs-toggle="pill"
+                                            data-bs-target="#theme-tab-pane" type="button" role="tab"
+                                            aria-controls="theme-tab-pane" aria-selected="true">
+                                            <i class="bi bi-palette me-1"></i> تم‌ها
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="custom-tab" data-bs-toggle="pill"
+                                            data-bs-target="#custom-tab-pane" type="button" role="tab"
+                                            aria-controls="custom-tab-pane" aria-selected="false">
+                                            <i class="bi bi-sliders me-1"></i> سفارشی
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content" id="designTabsContent">
+                                    <!-- Themes Tab -->
+                                    <div class="tab-pane fade show active" id="theme-tab-pane" role="tabpanel"
+                                        aria-labelledby="theme-tab">
+                                        <h6 class="mb-3">رنگ اصلی فرم</h6>
+                                        <div class="row g-2 mb-4">
+                                            <div class="col-6">
+                                                <div class="theme-option p-3 rounded text-center"
+                                                    onclick="changeTheme('#673ab7')" style="background-color: #673ab7;">
+                                                    <span class="text-white">بنفش</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="theme-option p-3 rounded text-center"
+                                                    onclick="changeTheme('#3f51b5')" style="background-color: #3f51b5;">
+                                                    <span class="text-white">نیلی</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="theme-option p-3 rounded text-center"
+                                                    onclick="changeTheme('#2196f3')" style="background-color: #2196f3;">
+                                                    <span class="text-white">آبی</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="theme-option p-3 rounded text-center"
+                                                    onclick="changeTheme('#03a9f4')" style="background-color: #03a9f4;">
+                                                    <span class="text-white">فیروزه‌ای</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="theme-option p-3 rounded text-center"
+                                                    onclick="changeTheme('#00bcd4')" style="background-color: #00bcd4;">
+                                                    <span class="text-white">سیان</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="theme-option p-3 rounded text-center"
+                                                    onclick="changeTheme('#009688')" style="background-color: #009688;">
+                                                    <span class="text-white">سبز آبی</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="theme-option p-3 rounded text-center"
+                                                    onclick="changeTheme('#4caf50')" style="background-color: #4caf50;">
+                                                    <span class="text-white">سبز</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="theme-option p-3 rounded text-center"
+                                                    onclick="changeTheme('#8bc34a')" style="background-color: #8bc34a;">
+                                                    <span class="text-dark">سبز روشن</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h6 class="mb-3">طرح‌بندی</h6>
+                                        <div class="row g-2">
+                                            <div class="col-6">
+                                                <div class="theme-option p-3 rounded text-center border"
+                                                    onclick="changeFormLayout('default')">
+                                                    <i class="bi bi-layout-text-sidebar display-5 d-block mb-2"></i>
+                                                    <span>پیش‌فرض</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="theme-option p-3 rounded text-center border"
+                                                    onclick="changeFormLayout('centered')">
+                                                    <i class="bi bi-layout-centered display-5 d-block mb-2"></i>
+                                                    <span>متمرکز</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Custom Tab -->
+                                    <div class="tab-pane fade" id="custom-tab-pane" role="tabpanel"
+                                        aria-labelledby="custom-tab">
+                                        <!-- Customization Tabs -->
+                                        <ul class="nav nav-pills nav-pill-soft mb-4" id="customization-tab"
+                                            role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link active" id="colors-tab" data-bs-toggle="pill"
+                                                    data-bs-target="#colors-tab-pane" type="button" role="tab"
+                                                    aria-controls="colors-tab-pane" aria-selected="true">
+                                                    <i class="bi bi-palette me-1"></i> رنگ‌ها
+                                                </button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="typography-tab" data-bs-toggle="pill"
+                                                    data-bs-target="#typography-tab-pane" type="button" role="tab"
+                                                    aria-controls="typography-tab-pane" aria-selected="false">
+                                                    <i class="bi bi-fonts me-1"></i> فونت
+                                                </button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="layout-tab" data-bs-toggle="pill"
+                                                    data-bs-target="#layout-tab-pane" type="button" role="tab"
+                                                    aria-controls="layout-tab-pane" aria-selected="false">
+                                                    <i class="bi bi-layout-sidebar me-1"></i> طرح‌بندی
+                                                </button>
+                                            </li>
+                                        </ul>
+
+                                        <!-- Tabs contents -->
+                                        <div class="tab-content" id="customization-tabContent">
+                                            <!-- Colors Tab -->
+                                            <div class="tab-pane fade show active" id="colors-tab-pane" role="tabpanel"
+                                                aria-labelledby="colors-tab">
+                                                <div class="mb-4">
+                                                    <h6 class="mb-3">رنگ اصلی فرم</h6>
+                                                    <div class="color-picker-wrapper mb-3">
+                                                        <input type="color"
+                                                            class="form-control form-control-color w-100"
+                                                            id="customPrimaryColor" value="#673ab7"
+                                                            onchange="changeTheme(this.value)" title="انتخاب رنگ اصلی">
+                                                        <label for="customPrimaryColor"
+                                                            class="form-label small text-muted mt-1 d-block">
+                                                            رنگ اصلی: <span id="primaryColorValue">#673ab7</span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="row g-2">
+                                                        <div class="col-6">
+                                                            <div class="color-picker-wrapper">
+                                                                <input type="color"
+                                                                    class="form-control form-control-color w-100"
+                                                                    id="customTextColor" value="#212529"
+                                                                    onchange="updateTextColor(this.value)"
+                                                                    title="انتخاب رنگ متن">
+                                                                <label for="customTextColor"
+                                                                    class="form-label small text-muted mt-1 d-block">
+                                                                    رنگ متن: <span id="textColorValue">#212529</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="color-picker-wrapper">
+                                                                <input type="color"
+                                                                    class="form-control form-control-color w-100"
+                                                                    id="customBgColor" value="#f8f9fa"
+                                                                    onchange="updateBackgroundColor(this.value)"
+                                                                    title="انتخاب رنگ پس‌زمینه">
+                                                                <label for="customBgColor"
+                                                                    class="form-label small text-muted mt-1 d-block">
+                                                                    پس‌زمینه: <span id="bgColorValue">#f8f9fa</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <h6 class="mb-3">رنگ دکمه‌ها</h6>
+                                                    <div class="row g-2">
+                                                        <div class="col-6">
+                                                            <div class="color-picker-wrapper">
+                                                                <input type="color"
+                                                                    class="form-control form-control-color w-100"
+                                                                    id="customButtonTextColor" value="#ffffff"
+                                                                    onchange="updateButtonTextColor(this.value)"
+                                                                    title="انتخاب رنگ متن دکمه">
+                                                                <label for="customButtonTextColor"
+                                                                    class="form-label small text-muted mt-1 d-block">
+                                                                    متن دکمه: <span
+                                                                        id="buttonTextColorValue">#ffffff</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="color-picker-wrapper">
+                                                                <input type="color"
+                                                                    class="form-control form-control-color w-100"
+                                                                    id="customButtonHoverColor" value="#5e35b1"
+                                                                    onchange="updateButtonHoverColor(this.value)"
+                                                                    title="انتخاب رنگ هاور دکمه">
+                                                                <label for="customButtonHoverColor"
+                                                                    class="form-label small text-muted mt-1 d-block">
+                                                                    هاور دکمه: <span
+                                                                        id="buttonHoverColorValue">#5e35b1</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Typography Tab -->
+                                            <div class="tab-pane fade" id="typography-tab-pane" role="tabpanel"
+                                                aria-labelledby="typography-tab">
+                                                <div class="mb-3">
+                                                    <h6 class="mb-3">فونت فرم</h6>
+                                                    <select class="form-select mb-3" id="customFont"
+                                                        onchange="updateFontFamily(this.value)">
+                                                        <option value="Vazir, sans-serif" selected>Vazir (پیش‌فرض)
+                                                        </option>
+                                                        <option value="Tahoma, sans-serif">Tahoma</option>
+                                                        <option value="Arial, sans-serif">Arial</option>
+                                                        <option value="'Segoe UI', sans-serif">Segoe UI</option>
+                                                        <option value="'B Nazanin', sans-serif">B Nazanin</option>
+                                                        <option value="'Iranian Sans', sans-serif">Iranian Sans</option>
+                                                    </select>
+
+                                                    <div class="row g-2">
+                                                        <div class="col-6">
+                                                            <label class="form-label small">اندازه فونت عنوان</label>
+                                                            <select class="form-select" id="titleFontSize"
+                                                                onchange="updateTitleFontSize(this.value)">
+                                                                <option value="1.75rem">بزرگ</option>
+                                                                <option value="1.5rem" selected>متوسط</option>
+                                                                <option value="1.25rem">کوچک</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <label class="form-label small">وزن فونت</label>
+                                                            <select class="form-select" id="fontWeight"
+                                                                onchange="updateFontWeight(this.value)">
+                                                                <option value="400" selected>معمولی</option>
+                                                                <option value="500">نیمه ضخیم</option>
+                                                                <option value="600">ضخیم</option>
+                                                                <option value="700">خیلی ضخیم</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Layout Tab -->
+                                            <div class="tab-pane fade" id="layout-tab-pane" role="tabpanel"
+                                                aria-labelledby="layout-tab">
+                                                <div class="mb-3">
+                                                    <h6 class="mb-3">طرح‌بندی فرم</h6>
+                                                    <div class="form-check form-switch mb-3">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="centeredLayout"
+                                                            onchange="changeFormLayout(this.checked ? 'centered' : 'default')">
+                                                        <label class="form-check-label" for="centeredLayout">فرم
+                                                            متمرکز</label>
+                                                    </div>
+
+                                                    <div class="form-check form-switch mb-3">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="showCardShadow"
+                                                            onchange="updateCardShadow(this.checked)">
+                                                        <label class="form-check-label" for="showCardShadow">سایه
+                                                            کارت‌ها</label>
+                                                    </div>
+
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="roundedCorners"
+                                                            onchange="updateRoundedCorners(this.checked)">
+                                                        <label class="form-check-label" for="roundedCorners">گوشه‌های
+                                                            گرد</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <h6 class="mb-3">فاصله‌ها</h6>
+                                                    <label for="fieldSpacing" class="form-label small">فاصله بین
+                                                        فیلدها</label>
+                                                    <input type="range" class="form-range" id="fieldSpacing" min="0.5"
+                                                        max="2" step="0.1" value="1"
+                                                        onchange="updateFieldSpacing(this.value)">
+                                                    <div class="d-flex justify-content-between">
+                                                        <small class="text-muted">کم</small>
+                                                        <small class="text-muted">زیاد</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 text-center">
+                    <button class="btn btn-success btn-lg" onclick="goToSettingsTab()">
+                        <i class="bi bi-arrow-right-circle"></i> مرحله بعدی
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Content -->
+        <div class="tab-pane fade" id="pills-tab10" role="tabpanel" aria-labelledby="pills-tab-10">
+            با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی
+            ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان
+            رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد
+            استفاده قرار گیرد.
+        </div>
     </div>
+    <!-- Tabs END -->
+
+
 
     <!-- Preview Modal -->
     <div class="modal fade" id="previewModal" tabindex="-1" aria-hidden="true">

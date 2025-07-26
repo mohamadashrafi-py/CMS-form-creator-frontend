@@ -1155,3 +1155,169 @@ function addCheckboxOption(fieldId) {
         }
     }
 }
+
+function changeTheme(color) {
+    currentTheme = color;
+    document.documentElement.style.setProperty('--primary-color', color);
+    document.documentElement.style.setProperty('--accent-color', lightenColor(color, 20));
+
+    // Update color value display
+    document.getElementById('primaryColorValue').textContent = color;
+    document.getElementById('customPrimaryColor').value = color;
+
+    updateDesignPreview();
+}
+
+function changeFormLayout(layout) {
+    const preview = document.getElementById('designPreview');
+    if (layout === 'centered') {
+        preview.classList.add('centered-form');
+    } else {
+        preview.classList.remove('centered-form');
+    }
+}
+
+function updateTextColor(color) {
+    document.documentElement.style.setProperty('--text-color', color);
+    document.getElementById('textColorValue').textContent = color;
+    updateDesignPreview();
+}
+
+function updateBackgroundColor(color) {
+    document.documentElement.style.setProperty('--bg-color', color);
+    document.getElementById('bgColorValue').textContent = color;
+    updateDesignPreview();
+} function updateButtonTextColor(color) {
+    document.documentElement.style.setProperty('--button-text-color', color);
+    document.getElementById('buttonTextColorValue').textContent = color;
+    updateDesignPreview();
+}
+function updateButtonHoverColor(color) {
+    document.documentElement.style.setProperty('--button-hover-color', color);
+    document.getElementById('buttonHoverColorValue').textContent = color;
+    updateDesignPreview();
+}
+function updateFontFamily(font) {
+    document.documentElement.style.setProperty('--font-family', font);
+    updateDesignPreview();
+}
+
+function updateDesignPreview() {
+    const preview = document.getElementById('designPreview');
+    const formTitle = document.getElementById('formTitle').value || 'فرم بدون عنوان';
+    const formDescription = document.getElementById('formDescription').value || '';
+
+    let previewHTML = `
+        <h3 style="color: ${currentTheme}">${formTitle}</h3>
+        ${formDescription ? `<p class="text-muted mb-4">${formDescription}</p>` : ''}
+        <form>
+    `;
+
+    // Add form fields to preview
+    document.querySelectorAll('.draggable-card').forEach(card => {
+        const fieldType = card.dataset.fieldType;
+        const fieldLabel = card.querySelector('.field-label-input')?.value || 'فیلد بدون عنوان';
+        const isRequired = card.querySelector('.required-checkbox')?.checked || false;
+
+        if (fieldType === 'section') {
+            previewHTML += `
+                <div class="mb-4 pt-3">
+                    <h4>${fieldLabel}</h4>
+                </div>
+            `;
+            return;
+        }
+
+        previewHTML += `
+            <div class="mb-3">
+                <label class="form-label">
+                    ${fieldLabel} ${isRequired ? '<span class="required-star">*</span>' : ''}
+                </label>
+        `;
+
+        // Add field input based on type
+        if (fieldType === 'text') {
+            previewHTML += `<input type="text" class="form-control">`;
+        } else if (fieldType === 'textarea') {
+            previewHTML += `<textarea class="form-control" rows="3"></textarea>`;
+        } else if (fieldType === 'select') {
+            previewHTML += `<select class="form-select"><option>انتخاب کنید</option></select>`;
+        } else if (fieldType === 'radio') {
+            previewHTML += `
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="previewRadio">
+                    <label class="form-check-label">گزینه ۱</label>
+                </div>
+            `;
+        }
+
+        previewHTML += `</div>`;
+    });
+
+    previewHTML += `
+            <button type="submit" class="btn mt-3" style="background-color: ${currentTheme}; color: white;">
+                ارسال
+            </button>
+        </form>
+    `; ``
+
+    preview.innerHTML = previewHTML;
+}
+
+function goToSettingsTab() {
+    // Get the current active tab
+    const currentTab = document.querySelector('.nav-pills .nav-link.active');
+
+    // Find the next tab in sequence
+    const nextTab = currentTab.parentElement.nextElementSibling?.querySelector('.nav-link');
+
+    if (nextTab) {
+        // Show the next tab
+        const tabInstance = new bootstrap.Tab(nextTab);
+        tabInstance.show();
+    } else {
+        // If we're on the last tab, show the first one (circular navigation)
+        const firstTab = document.querySelector('.nav-pills .nav-link:first-child');
+        const tabInstance = new bootstrap.Tab(firstTab);
+        tabInstance.show();
+    }
+}
+
+// Initialize design preview when tab is shown
+document.getElementById('pills-tab9').addEventListener('shown.bs.tab', function () {
+    updateDesignPreview();
+});
+
+
+function updateTitleFontSize(size) {
+    document.documentElement.style.setProperty('--title-font-size', size);
+    updateDesignPreview();
+}
+
+function updateFontWeight(weight) {
+    document.documentElement.style.setProperty('--font-weight', weight);
+    updateDesignPreview();
+}
+
+function updateCardShadow(show) {
+    if (show) {
+        document.documentElement.style.setProperty('--card-shadow', '0 4px 12px rgba(0, 0, 0, 0.1)');
+    } else {
+        document.documentElement.style.setProperty('--card-shadow', 'none');
+    }
+    updateDesignPreview();
+}
+
+function updateRoundedCorners(rounded) {
+    if (rounded) {
+        document.documentElement.style.setProperty('--border-radius', '8px');
+    } else {
+        document.documentElement.style.setProperty('--border-radius', '0');
+    }
+    updateDesignPreview();
+}
+
+function updateFieldSpacing(value) {
+    document.documentElement.style.setProperty('--field-spacing', `${value}rem`);
+    updateDesignPreview();
+}
