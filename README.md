@@ -1,4 +1,4 @@
-### CMS form creator(v.0.9.1)
+### CMS form creator(v.0.1.0)
 CMS form creator enable you to create your custom form with high flexibility. By that you have a wide range of options.
 * variety type of fields
 * apply several actions on your fields effortlessly like delete, copy, update
@@ -7,6 +7,7 @@ CMS form creator enable you to create your custom form with high flexibility. By
 * there are settings for form such as them, limit the answers, show progress and collect emails
 * you have this authority to add custom conditional logic, but its on developing process
 * order your fields easily by a typical drag and drop
+* publish your form easily via social media, link and qrcode also youn can print your form
 
 ### Usage
 * clone the `CMS-form-crater` repository
@@ -22,6 +23,5 @@ you can customize the CMS by adding style to the `src/assets/css/style-rtl.css` 
 **if you ran to any problem read the docs or open an issue in the github. its my absolute pleasure to respond you.**
 
 ### What you are going to experience for the next version
-* advanced conditional logic setting
-* improved ui/ux and them
-* and much more options like attachment
+* backend framework `Django`
+* improved ui/ux 
