@@ -1,4 +1,4 @@
-### CMS form creator(v.0.1.0)
+### CMS form creator(v.1.0.0)
 CMS form creator enable you to create your custom form with high flexibility. By that you have a wide range of options.
 * variety type of fields
 * apply several actions on your fields effortlessly like delete, copy, update
