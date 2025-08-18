@@ -316,47 +316,49 @@
             --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             --border-radius: 8px;
             --field-spacing: 1rem;
-        }.attachment-preview {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 10px;
-    border: 1px dashed #ddd;
-    border-radius: 8px;
-    min-height: 60px;
-}
+        }
 
-.attachment-thumbnail {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    border-radius: 4px;
-    overflow: hidden;
-    background-color: #f5f5f5;
-}
+        .attachment-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 10px;
+            border: 1px dashed #ddd;
+            border-radius: 8px;
+            min-height: 60px;
+        }
 
-.attachment-thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+        .attachment-thumbnail {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            border-radius: 4px;
+            overflow: hidden;
+            background-color: #f5f5f5;
+        }
 
-.attachment-thumbnail .remove-attachment {
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    background: rgba(0,0,0,0.5);
-    color: white;
-    border: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    font-size: 12px;
-}
+        .attachment-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .attachment-thumbnail .remove-attachment {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            font-size: 12px;
+        }
     </style>
 </head>
 
@@ -371,11 +373,6 @@
         <li class="nav-item ms-2 ms-sm-5" role="presentation">
             <button class="nav-link mb-0" id="pills-tab-9" data-bs-toggle="pill" data-bs-target="#pills-tab9"
                 type="button" role="tab" aria-controls="pills-tab9" aria-selected="false">طراحی</button>
-        </li>
-        <!-- Tab item -->
-        <li class="nav-item ms-2 ms-sm-5" role="presentation">
-            <button class="nav-link mb-0" id="pills-tab-10" data-bs-toggle="pill" data-bs-target="#pills-tab10"
-                type="button" role="tab" aria-controls="pills-tab10" aria-selected="false">تنظیمات</button>
         </li>
         <!-- Tab item -->
         <li class="nav-item ms-2 ms-sm-5" role="presentation">
@@ -814,6 +811,179 @@
                     <button class="btn btn-success btn-lg" onclick="goToSettingsTab()">
                         <i class="bi bi-arrow-right-circle"></i> مرحله بعدی
                     </button>
+                </div>
+            </div>
+        </div>
+        <!-- Content -->
+        <div class="tab-pane fade" id="pills-tab10" role="tabpanel" aria-labelledby="pills-tab-10">
+            <div class="container-fluid py-4">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="text-center mb-5">
+                            <h2 class="fw-bold text-primary mb-3">فرم شما آماده انتشار است!</h2>
+                            <p class="lead text-muted">اکنون می‌توانید فرم خود را از طریق لینک مستقیم، شبکه‌های اجتماعی
+                                یا کد QR به اشتراک بگذارید.</p>
+                        </div>
+
+                        <div class="row g-4">
+                            <!-- Link Sharing Card -->
+                            <div class="col-md-4">
+                                <div class="card border-0 shadow-sm h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="bg-soft-primary rounded-circle p-3 d-inline-block mb-3">
+                                            <i class="bi bi-link-45deg fs-2 text-primary"></i>
+                                        </div>
+                                        <h4 class="mb-3">اشتراک گذاری لینک</h4>
+                                        <p class="text-muted mb-4">این لینک را می‌توانید با دیگران به اشتراک بگذارید:
+                                        </p>
+
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" id="formLink"
+                                                value="https://example.com/form/abc123" readonly>
+                                            <button class="btn btn-primary" type="button" onclick="copyFormLink()">
+                                                <i class="bi bi-clipboard"></i>
+                                            </button>
+                                        </div>
+
+                                        <button class="btn btn-outline-primary w-100 mt-2" onclick="copyFormLink()">
+                                            <i class="bi bi-code me-2"></i>کپی لینک
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Social Media Card -->
+                            <div class="col-md-4">
+                                <div class="card border-0 shadow-sm h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="bg-soft-info rounded-circle p-3 d-inline-block mb-3">
+                                            <i class="bi bi-share fs-2 text-info"></i>
+                                        </div>
+                                        <h4 class="mb-3">شبکه‌های اجتماعی</h4>
+                                        <p class="text-muted mb-4">فرم خود را در پلتفرم‌های مختلف به اشتراک بگذارید:</p>
+
+                                        <div class="d-flex flex-wrap justify-content-center gap-2">
+                                            <button class="btn btn-outline-primary btn-icon rounded-circle"
+                                                onclick="shareOnTelegram()">
+                                                <i class="bi bi-telegram"></i>
+                                            </button>
+                                            <button class="btn btn-outline-success btn-icon rounded-circle"
+                                                onclick="shareOnWhatsApp()">
+                                                <i class="bi bi-whatsapp"></i>
+                                            </button>
+                                            <button class="btn btn-outline-info btn-icon rounded-circle"
+                                                onclick="shareOnTwitter()">
+                                                <i class="bi bi-twitter"></i>
+                                            </button>
+                                            <button class="btn btn-outline-danger btn-icon rounded-circle"
+                                                onclick="shareOnInstagram()">
+                                                <i class="bi bi-instagram"></i>
+                                            </button>
+                                            <button class="btn btn-outline-dark btn-icon rounded-circle"
+                                                onclick="shareOnLinkedIn()">
+                                                <i class="bi bi-linkedin"></i>
+                                            </button>
+                                        </div>
+
+                                        <button class="btn btn-soft-info w-100 mt-3" onclick="showEmailOptions()">
+                                            <i class="bi bi-envelope me-2"></i>ارسال ایمیل
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- QR Code Card -->
+                            <div class="col-md-4">
+                                <div class="card border-0 shadow-sm h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="bg-soft-warning rounded-circle p-3 d-inline-block mb-3">
+                                            <i class="bi bi-qr-code fs-2 text-warning"></i>
+                                        </div>
+                                        <h4 class="mb-3">کد QR</h4>
+                                        <p class="text-muted mb-4">اسکن کنید یا چاپ نمایید:</p>
+
+                                        <div class="bg-white p-3 rounded d-inline-block mb-3 border">
+                                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://example.com/form/abc123"
+                                                alt="QR Code" class="img-fluid" width="150">
+                                        </div>
+
+                                        <div class="d-flex gap-2 justify-content-center">
+                                            <button class="btn btn-outline-secondary" onclick="downloadQRCode()">
+                                                <i class="bi bi-download me-2"></i>دانلود
+                                            </button>
+                                            <button class="btn btn-warning" onclick="printQRCode()">
+                                                <i class="bi bi-printer me-2"></i>چاپ
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional Options -->
+                        <div class="card border-0 shadow-sm mt-4">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-md-6">
+                                        <h5 class="mb-3">گزینه‌های پیشرفته انتشار</h5>
+                                        <ul class="list-unstyled">
+                                            <li class="mb-2">
+                                                <i class="bi bi-shield-lock text-success me-2"></i>
+                                                <a href="#" class="text-decoration-none">تنظیمات حریم خصوصی</a>
+                                            </li>
+                                            <li class="mb-2">
+                                                <i class="bi bi-people text-primary me-2"></i>
+                                                <a href="#" class="text-decoration-none">محدود کردن دسترسی</a>
+                                            </li>
+                                            <li class="mb-2">
+                                                <i class="bi bi-calendar-check text-info me-2"></i>
+                                                <a href="#" class="text-decoration-none">تعیین تاریخ انقضا</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6 border-start">
+                                        <h5 class="mb-3">آمار و تحلیل‌ها</h5>
+                                        <div class="d-flex align-items-center mb-2">
+                                            <div class="flex-shrink-0">
+                                                <i class="bi bi-eye-fill text-purple"></i>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <small class="text-muted d-block">بازدیدها</small>
+                                                <h6 class="mb-0">0</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-2">
+                                            <div class="flex-shrink-0">
+                                                <i class="bi bi-check-circle-fill text-success"></i>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <small class="text-muted d-block">تکمیل‌شده</small>
+                                                <h6 class="mb-0">0</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-shrink-0">
+                                                <i class="bi bi-clock-history text-warning"></i>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <small class="text-muted d-block">میانگین زمان</small>
+                                                <h6 class="mb-0">0 ثانیه</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-5">
+                            <button class="btn btn-primary btn-lg px-4 me-3" onclick="publishForm()">
+                                <i class="bi bi-send-check me-2"></i>انتشار نهایی
+                            </button>
+                            <button class="btn btn-outline-secondary btn-lg px-4" onclick="saveAsDraft()">
+                                <i class="bi bi-save me-2"></i>ذخیره پیش‌نویس
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
