@@ -1,50 +1,52 @@
 <template>
   <div id="app" dir="rtl">
     <!-- Navigation Tabs -->
-    <ul class="nav nav-pills nav-pills-bg-soft my-3 mx-3 px-3 nav-justified">
-      <li class="nav-item ms-2 ms-sm-5" role="presentation">
-        <button 
-          class="nav-link mb-0" 
-          :class="{ active: activeTab === 'form' }"
-          @click="activeTab = 'form'"
-        >
-          فرم
-        </button>
-      </li>
-      <li class="nav-item ms-2 ms-sm-5" role="presentation">
-        <button 
-          class="nav-link mb-0" 
-          :class="{ active: activeTab === 'design' }"
-          @click="activeTab = 'design'"
-        >
-          طراحی
-        </button>
-      </li>
-      <li class="nav-item ms-2 ms-sm-5" role="presentation">
-        <button 
-          class="nav-link mb-0" 
-          :class="{ active: activeTab === 'publish' }"
-          @click="activeTab = 'publish'"
-        >
-          انتشار
-        </button>
-      </li>
-    </ul>
+    <div class="nav-container">
+      <ul class="nav nav-pills nav-pills-bg-soft my-3 mx-3 px-3 nav-justified">
+        <li class="nav-item ms-2 ms-sm-5" role="presentation">
+          <button 
+            class="nav-link mb-0" 
+            :class="{ active: activeTab === 'form' }"
+            @click="setActiveTab('form')"
+          >
+            فرم
+          </button>
+        </li>
+        <li class="nav-item ms-2 ms-sm-5" role="presentation">
+          <button 
+            class="nav-link mb-0" 
+            :class="{ active: activeTab === 'design' }"
+            @click="setActiveTab('design')"
+          >
+            طراحی
+          </button>
+        </li>
+        <li class="nav-item ms-2 ms-sm-5" role="presentation">
+          <button 
+            class="nav-link mb-0" 
+            :class="{ active: activeTab === 'publish' }"
+            @click="setActiveTab('publish')"
+          >
+            انتشار
+          </button>
+        </li>
+      </ul>
+    </div>
 
     <!-- Tab Content -->
     <div class="tab-content">
       <!-- Form Tab -->
-      <div v-if="activeTab === 'form'" class="tab-pane fade show active">
+      <div v-show="activeTab === 'form'" class="tab-pane fade" :class="{ 'show active': activeTab === 'form' }">
         <FormBuilder />
       </div>
 
       <!-- Design Tab -->
-      <div v-if="activeTab === 'design'" class="tab-pane fade">
+      <div v-show="activeTab === 'design'" class="tab-pane fade" :class="{ 'show active': activeTab === 'design' }">
         <DesignSettings />
       </div>
 
       <!-- Publish Tab -->
-      <div v-if="activeTab === 'publish'" class="tab-pane fade">
+      <div v-show="activeTab === 'publish'" class="tab-pane fade" :class="{ 'show active': activeTab === 'publish' }">
         <PublishSettings />
       </div>
     </div>
@@ -67,26 +69,70 @@ export default {
     return {
       activeTab: 'form'
     }
+  },
+  methods: {
+    setActiveTab(tab) {
+      this.activeTab = tab;
+    }
+  },
+  mounted() {
+    console.log('App mounted with components:', Object.keys(this.$options.components));
   }
 }
 </script>
 
 <style>
-:root {
-  --primary-color: #673ab7;
-  --secondary-color: #f5f5f5;
-  --accent-color: #7c4dff;
+/* Basic reset and styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
+  font-family: Vazir, Tahoma, Arial, sans-serif;
   background-color: #fafafa;
-  font-family: Vazir, sans-serif;
+  color: #333;
 }
 
-.form-header {
-  background-color: var(--primary-color);
+#app {
+  min-height: 100vh;
+}
+
+.nav-container {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin: 10px;
+}
+
+.nav-pills {
+  padding: 10px 0;
+}
+
+.nav-link {
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: #495057;
+  transition: all 0.3s ease;
+  border: none;
+  background: transparent;
+}
+
+.nav-link.active {
+  background-color: #673ab7;
   color: white;
-  border-radius: 8px 8px 0 0;
 }
 
+.nav-link:hover:not(.active) {
+  background-color: #e9ecef;
+}
+
+.tab-content {
+  padding: 20px;
+}
+
+.tab-pane {
+  min-height: 500px;
+}
 </style>
