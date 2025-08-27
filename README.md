@@ -1,4 +1,4 @@
-### CMS form creator(v.1.0.0)
+### CMS form creator(v.1.1.0)
 CMS form creator enable you to create your custom form with high flexibility. By that you have a wide range of options.
 * variety type of fields
 * apply several actions on your fields effortlessly like delete, copy, update
@@ -9,19 +9,29 @@ CMS form creator enable you to create your custom form with high flexibility. By
 * order your fields easily by a typical drag and drop
 * publish your form easily via social media, link and qrcode also youn can print your form
 
-### Usage
-* clone the `CMS-form-crater` repository
+## Project setup
 ```
-git clone https://github.com/mohamadashrafi-py/CMS-form-creator.git
+npm install
 ```
-* go to `src/code/` directory and open the `index.html`
 
-### Customize
-you can customize the CMS by adding style to the `src/assets/css/style-rtl.css` file and the behavior of the CMS in add, delete and update in `src/assets/js/index.js` file. 
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
+
 
 ### Docs
 **if you ran to any problem read the docs or open an issue in the github. its my absolute pleasure to respond you.**
-
-### What you are going to experience for the next version
-* backend framework `Django`
-* improved ui/ux 
